@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run lint-staged (lint and format)
+npx lint-staged
+
+# Build and package
+echo "Building TypeScript..."
+npm run build
+
+echo "Packaging with ncc..."
+npm run package
+
+# Add dist files to commit
+git add dist/
+
